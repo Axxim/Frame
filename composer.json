@@ -14,8 +14,11 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "klein/klein": "2.0.*",
-        "dflydev/markdown": "1.0.*@dev"
+        "klein/klein": "2.0.*"
+    },
+    "suggest": {
+        "dflydev/markdown": "Enable Markdown Controllers",
+        "illuminate/database": "Add Model/Database support"
     },
     "autoload": {
         "psr-0": { 
