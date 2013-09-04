@@ -13,8 +13,20 @@ use Klein;
  */
 abstract class Base {
 
+    /**
+     * @var \Klein\Request
+     */
     public $request;
+
+    /**
+     * @var \Klein\Response
+     */
     public $response;
+
+
+    /**
+     * @var \Klein\ServiceProvider
+     */
     public $service;
 
     /**
@@ -24,15 +36,17 @@ abstract class Base {
      * @param Klein\Response $response
      * @param                $service
      */
-    public function __construct(Klein\Request $request, Klein\Response $response, $service) {
-
+    public function __construct(Klein\Request $request, Klein\Response $response, Klein\ServiceProvider $service) {
+        $this->request = $request;
+        $this->response = $response;
+        $this->service = $service;
     }
 
     public function _preRender() {
 
     }
 
-    public function _render() {
+    public function _render($out, $args) {
 
     }
 

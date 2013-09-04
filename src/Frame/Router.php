@@ -66,7 +66,9 @@ class Router {
             require app_path("controllers/$controller.php");
             $class = new $controller($request, $response, $service);
 
-            return $class->$action();
+            $class->_preRender();
+            echo $class->_render($class->$action(), array());
+            $class->_postRender();
         });
 
     }

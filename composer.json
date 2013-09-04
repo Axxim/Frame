@@ -14,7 +14,8 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "klein/klein": "2.0.*"
+        "klein/klein": "2.0.*",
+        "dflydev/markdown": "1.0.*@dev"
     },
     "autoload": {
         "psr-0": { 
