@@ -13,6 +13,8 @@ use Klein;
  */
 abstract class Base {
 
+    public $charset = 'utf-8';
+
     /**
      * @var \Klein\Request
      */

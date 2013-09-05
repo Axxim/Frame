@@ -16,8 +16,12 @@ class Markdown extends Base {
         parent::_render($out, $args);
 
         $parser = new MarkdownParser();
+        $html = $parser->transformMarkdown($out);
 
-        return $parser->transformMarkdown($out);
+        $this->response->header('Content-Type', 'text/html; charset=' . $this->charset);
+        $this->response->body($html);
+
+        $this->response->send();
     }
 
 }

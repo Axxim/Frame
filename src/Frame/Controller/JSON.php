@@ -12,16 +12,26 @@ class JSON extends Base {
     public function _render($out, $args) {
         parent::_render($out, $args);
 
-        $prefix = null;
-        if(isset($args['prefix'])) {
-            $prefix = $args['prefix'];
-        }
+        $this->response->noCache();
 
+        // Check if method is an object that has a toArray method
         if(method_exists($out, 'toArray')) {
             $out = $out->toArray();
         }
 
-        $this->response->json($out, $prefix);
+        $json = json_encode($out);
+
+        if(isset($args['prefix'])) {
+            $prefix = $args['prefix'];
+
+            $this->response->header('Content-Type', 'text/javascript; charset=' . $this->charset);
+            $this->response->body("$prefix($json);");
+        } else {
+            $this->response->header('Content-Type', 'application/json; charset=' . $this->charset);
+            $this->response->body($json);
+        }
+
+        $this->response->send();
     }
 
 }
