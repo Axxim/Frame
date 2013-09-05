@@ -1,4 +1,4 @@
-Frame
+Frame [![Build Status](https://travis-ci.org/Axxim/Frame.png?branch=master)](https://travis-ci.org/Axxim/Frame)
 =====
 
 Frame is a super simple PHP framework that uses Klein for routing.
