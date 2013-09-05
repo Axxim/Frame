@@ -53,7 +53,7 @@ class Router {
     }
 
     /**
-     * Register a specific route.
+     * Register a specific route and call it's renderers
      *
      * @param $method
      * @param $path
