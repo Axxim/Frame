@@ -17,6 +17,10 @@ class JSON extends Base {
             $prefix = $args['prefix'];
         }
 
+        if(method_exists($out, 'toArray')) {
+            $out = $out->toArray();
+        }
+
         $this->response->json($out, $prefix);
     }
 
