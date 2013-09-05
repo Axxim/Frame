@@ -14,6 +14,7 @@ class Frame {
 
     private $config;
     private $router;
+    private $db;
 
     public function __construct() {
         // Register klein
@@ -21,6 +22,7 @@ class Frame {
 
         // Init app
         $this->config = new Config();
+        $this->db = new DB\Connection($this->config);
     }
 
     public function start() {
