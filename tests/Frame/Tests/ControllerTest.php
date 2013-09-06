@@ -1,11 +1,4 @@
 <?php
-/**
- * File: ControllerTest.php
- * User: lstrickland
- * Date: 9/6/13
- * Time: 1:14 PM
- */
-
 namespace Frame\Tests;
 
 
