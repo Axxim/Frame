@@ -19,6 +19,7 @@ class JSON extends Base {
             $out = $out->toArray();
         }
 
+        // Make sure we're not jsoning json.
         if(!$this->isJson($out)) {
             $out = json_encode($out);
         }
