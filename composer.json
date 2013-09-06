@@ -19,7 +19,9 @@
     "require-dev": {
         "phpunit/phpunit": "3.7.x",
         "dflydev/markdown": "1.0.*@dev",
-        "illuminate/database": "*"
+        "illuminate/database": "*",
+
+        "mustache/mustache": "~2.1"
     },
     "suggest": {
         "dflydev/markdown": "Enable Markdown Controllers",

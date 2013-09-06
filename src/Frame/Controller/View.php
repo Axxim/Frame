@@ -22,7 +22,14 @@ class View extends Base {
      */
     public $ext = 'phtml';
 
+    /**
+     * Which view composer?
+     * @var string
+     */
+    public $composer = 'Frame\\Controller\\Composers\\Mustache';
+
     public $data;
+
 
     /**
      * Make the view
@@ -33,11 +40,17 @@ class View extends Base {
     public function make($view, $data = array()) {
         // If we have a layout
         if(!empty($this->layout)) {
-            $this->service->layout(self::findView($this->layout));
+            $this->service->layout($this->findView($this->layout));
         }
 
-        // Render view regardless
-        $this->service->render(self::findView($view), $data);
+        ob_start();
+        $this->service->render($this->findView($view), $data);
+        $entire = ob_get_clean();
+
+        $engine = $this->composer;
+        $composer = new $engine;
+
+        echo $composer->render($entire, $data);
     }
 
     /**
