@@ -3,6 +3,7 @@
 namespace Frame\Controller;
 
 use Frame\Router;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Klein;
 
@@ -14,9 +15,32 @@ use Klein;
  */
 class Resource extends JSON {
 
+    /**
+     * The name of the model
+     *
+     * @var string
+     */
     public $model = '';
+
+    /**
+     * A working instantiation of the model.
+     *
+     * @var Model
+     */
     public $modelInstance;
 
+    /**
+     * Init the resource controller.
+     * Since this controller registers it's own routes and calls it's
+     * own actions we need to call the parent construct and register
+     * the Klein variables
+     *
+     * @param Klein\Request         $request
+     * @param Klein\Response        $response
+     * @param Klein\ServiceProvider $service
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
     public function __construct(Klein\Request $request, Klein\Response $response, Klein\ServiceProvider $service) {
         parent::__construct($request, $response, $service);
 
@@ -28,24 +52,47 @@ class Resource extends JSON {
         $this->modelInstance = new $model();
     }
 
+    /**
+     * List all records in our table
+     *
+     * @return mixed
+     */
     public function index() {
         $records = $this->modelInstance->all();
 
         return $records;
     }
 
+    /**
+     * Show a specific record.
+     *
+     * @param $id
+     */
     public function show($id) {
 
     }
 
+    /**
+     * Creates a new record
+     */
     public function create() {
 
     }
 
+    /**
+     * Update a record
+     *
+     * @param $id
+     */
     public function update($id) {
 
     }
 
+    /**
+     * Delete a record
+     *
+     * @param $id
+     */
     public function delete($id) {
 
     }
