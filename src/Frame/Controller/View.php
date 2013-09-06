@@ -10,15 +10,19 @@ namespace Frame\Controller;
  */
 class View extends Base {
 
+    /**
+     * Layout for views
+     * @var string
+     */
     public $layout;
 
+    /**
+     * View file extensions
+     * @var string
+     */
+    public $ext = 'phtml';
+
     public $data;
-
-    public function _render($out, $args) {
-        parent::_render($out, $args);
-
-        $this->response->send();
-    }
 
     /**
      * Make the view
@@ -43,8 +47,9 @@ class View extends Base {
      *
      * @return string
      */
-    private static function findView($view) {
-        $path = app_path("views/$view.phtml");
+    private function findView($view) {
+        $ext = $this->ext;
+        $path = app_path("views/$view.$ext");
 
         return $path;
     }
