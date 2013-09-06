@@ -37,10 +37,20 @@ class Router {
                 $explodedRoute = explode(' ', $route);
                 list($method, $path) = $explodedRoute;
 
-                $explodedAction = explode('@', $controllerAction);
-                list($controller, $action) = $explodedAction;
+                // If it's a resource it'll register it's own routes
+                if($method == 'RESOURCE') {
+                    // Resource route registers don't have actions
+                    $controller = $controllerAction;
 
-                $this->register($method, $path, $controller, $action);
+                    // Handle resource controllers
+                    require_once app_path("controllers/$controller.php");
+                    $routes = $controller::_registerRoutes($this, $path, $controller);
+                } else {
+                    $explodedAction = explode('@', $controllerAction);
+                    list($controller, $action) = $explodedAction;
+
+                    $this->register($method, $path, $controller, $action);
+                }
             }
         }
     }
@@ -63,7 +73,7 @@ class Router {
     private function register($method, $path, $controller, $action) {
 
         $this->klein->respond($method, $path, function($request, $response, $service) use($controller, $action) {
-            require app_path("controllers/$controller.php");
+            require_once app_path("controllers/$controller.php");
             $class = new $controller($request, $response, $service);
 
             $class->_preRender();
