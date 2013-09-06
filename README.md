@@ -13,4 +13,4 @@ you with the following classes to extend to help you develop your applications.
 * [Frame\Controller\JSON](https://github.com/Axxim/Frame/wiki/Controllers#json-controllers)
 * [Frame\Controller\Markdown](https://github.com/Axxim/Frame/wiki/Controllers#markdown-controllers)
 * [Frame\Controller\Resource](https://github.com/Axxim/Frame/wiki/Controllers#resource-controllers)
-* [Frame\Controllers\View](https://github.com/Axxim/Frame/wiki/Controllers#view-controllers)
+* [Frame\Controller\View](https://github.com/Axxim/Frame/wiki/Controllers#view-controllers)
