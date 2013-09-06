@@ -10,6 +10,8 @@ namespace Frame\Controller;
  */
 class View extends Base {
 
+    public $layout;
+
     public $data;
 
     public function _render($out, $args) {
@@ -25,9 +27,13 @@ class View extends Base {
      * @param array $data
      */
     public function make($view, $data = array()) {
+        // If we have a layout
+        if(!empty($this->layout)) {
+            $this->service->layout(self::findView($this->layout));
+        }
 
+        // Render view regardless
         $this->service->render(self::findView($view), $data);
-
     }
 
     /**

@@ -10,7 +10,8 @@ abstract class AbstractFrameTest extends PHPUnit_Framework_TestCase {
     protected $frameApp;
 
     protected function setUp() {
-        $this->frameApp = new Frame();
+        // This isn't ready
+        //$this->frameApp = new Frame();
     }
 
 }
