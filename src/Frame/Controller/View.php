@@ -17,6 +17,12 @@ class View extends Base {
     public $layout;
 
     /**
+     * View path
+     * @var string
+     */
+    public $views = 'views';
+
+    /**
      * View file extensions
      * @var string
      */
@@ -32,25 +38,28 @@ class View extends Base {
 
 
     /**
-     * Make the view
+     * Make the view.
+     * Since templating engines like twig use the view path they already
+     * have, we pass in a relative path "home.phtml" instead of the
+     * app_path() + views
      *
      * @param       $view
      * @param array $data
+     * @param array $options View Composer options
      */
-    public function make($view, $data = array()) {
-        // If we have a layout
-        if(!empty($this->layout)) {
-            $this->service->layout($this->findView($this->layout));
-        }
-
-        ob_start();
-        $this->service->render($this->findView($view), $data);
-        $entire = ob_get_clean();
+    public function make($view, $data = array(), $options = array()) {
 
         $engine = $this->composer;
-        $composer = new $engine;
+        $composer = new $engine(app_path($this->views), $options);
 
-        echo $composer->render($entire, $data);
+        // return
+        $output = $composer->render($this->viewPath($view), $data);
+        $this->response->body($output);
+        $this->response->send();
+    }
+
+    private function viewPath($view) {
+        return $view . '.' . $this->ext;
     }
 
     /**

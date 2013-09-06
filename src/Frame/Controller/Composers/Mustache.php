@@ -10,14 +10,18 @@ use Mustache_Engine;
  *
  * @package Frame\Controller\Composers
  */
-class Mustache implements Composer {
+class Mustache extends Composer {
+
+    private $views;
 
     private $engine;
 
-    public function __construct($options = array()) {
+    public function __construct($views, $options = array()) {
         if(!class_exists('Mustache_Engine')) {
             // No mustache
         }
+
+        $this->views = $views;
 
         // Load the options
         $defaultOptions = array(
@@ -39,8 +43,9 @@ class Mustache implements Composer {
      * @return string
      */
     public function render($file, $data) {
+        $contents = file_get_contents($this->findView($file));
 
-        return $this->engine->render($file, $data);
+        return $this->engine->render($contents, $data);
     }
 
 }
