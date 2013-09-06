@@ -19,19 +19,34 @@ class JSON extends Base {
             $out = $out->toArray();
         }
 
-        $json = json_encode($out);
+        if(!$this->isJson($out)) {
+            $out = json_encode($out);
+        }
+
 
         if(isset($args['prefix'])) {
             $prefix = $args['prefix'];
 
             $this->response->header('Content-Type', 'text/javascript; charset=' . $this->charset);
-            $this->response->body("$prefix($json);");
+            $this->response->body("$prefix($out);");
         } else {
             $this->response->header('Content-Type', 'application/json; charset=' . $this->charset);
-            $this->response->body($json);
+            $this->response->body($out);
         }
 
         $this->response->send();
+    }
+
+    /**
+     * Check if string is JSON
+     *
+     * @param $string
+     *
+     * @return bool
+     */
+    private function isJson($string) {
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
     }
 
 }
