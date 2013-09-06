@@ -1,4 +1,4 @@
-Frame [![Travis CI](http://origin.shields.io/travis-ci/Axxim%2FFrame.png)](https://travis-ci.org/Axxim/Frame)  [![Gittip](http://origin.shields.io/gittip/clone1018.png)](https://www.gittip.com/clone1018/)
+Frame v0.1.0 [![Travis CI](http://origin.shields.io/travis-ci/Axxim%2FFrame.png)](https://travis-ci.org/Axxim/Frame)  [![Gittip](http://origin.shields.io/gittip/clone1018.png)](https://www.gittip.com/clone1018/)
 =====
 
 Frame is a super fast PHP framework that uses Klein for routing.
