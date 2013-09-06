@@ -21,7 +21,8 @@
         "dflydev/markdown": "1.0.*@dev",
         "illuminate/database": "*",
 
-        "mustache/mustache": "~2.1"
+        "mustache/mustache": "~2.1",
+        "twig/twig": "1.*"
     },
     "suggest": {
         "dflydev/markdown": "Enable Markdown Controllers",
