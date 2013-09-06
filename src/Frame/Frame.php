@@ -31,7 +31,11 @@ class Frame {
      * Visibly start the Frame engine
      */
     public function start() {
-        $this->db = new DB\Connection($this->config);
+        // Don't load db if we don't want it (redo in the future)
+        if($this->config->exists('database')) {
+            $this->db = new DB\Connection($this->config);
+        }
+
         $this->router = new Router($this->klein, $this->config);
     }
 

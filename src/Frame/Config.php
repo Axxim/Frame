@@ -33,6 +33,17 @@ class Config {
     }
 
     /**
+     * Check if key exists
+     *
+     * @param $key
+     *
+     * @return bool
+     */
+    public function exists($key) {
+        return isset($this->items[$key]);
+    }
+
+    /**
      * Get a configuration item.
      *
      * @param $key
@@ -40,6 +51,9 @@ class Config {
      * @return mixed
      */
     public function get($key) {
+        if (!isset($this->items[$key])) {
+            return false;
+        }
 
         return $this->items[$key];
     }
